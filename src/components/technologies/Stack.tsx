@@ -3,9 +3,11 @@ import type { Itechnology } from "../types/technology";
 
 type StackProps = {
   technologies: Itechnology[];
+  handleRemoveTechnology: (id:string) => void
+  handleClearAll: () => void
 };
 
-const Stack = ({ technologies }: StackProps) => {
+const Stack = ({ technologies,handleClearAll,handleRemoveTechnology }: StackProps) => {
   return (
     <aside id="reading-list" className="w-full">
       <div className="flex flex-col gap-5 rounded-lg border border-accent bg-surface p-5">
@@ -63,6 +65,7 @@ const Stack = ({ technologies }: StackProps) => {
 
                 <button
                   type="button"
+				  onClick={() => handleRemoveTechnology(technology.id)}
                   className="ml-auto text-nav-icon hover:text-coral"
                   aria-label={`Remove ${technology.icon}`}
                 >
@@ -76,6 +79,7 @@ const Stack = ({ technologies }: StackProps) => {
         <button
           type="button"
           disabled={technologies.length === 0}
+		  onClick={handleClearAll}
           className="flex min-h-9 w-full items-center justify-center gap-2 rounded-lg border border-danger-line text-xs font-bold text-danger disabled:cursor-not-allowed disabled:opacity-40"
         >
           <FiTrash2 />
