@@ -11,7 +11,6 @@ const Stack = ({ technologies,handleClearAll,handleRemoveTechnology }: StackProp
   return (
     <aside id="reading-list" className="w-full">
       <div className="flex flex-col gap-5 rounded-lg border border-accent bg-surface p-5">
-        {/* Header */}
         <div className="flex items-start justify-between">
           <div>
             <p className="mb-5 text-xs font-bold uppercase tracking-widest text-coral">
