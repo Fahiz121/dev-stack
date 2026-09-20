@@ -1,9 +1,10 @@
-import { FiArrowUpRight, FiStar } from "react-icons/fi";
+import { FiCheck, FiStar } from "react-icons/fi";
 import type { Itechnology } from "../types/technology";
 
 type TechnologyCardProps = {
   technology: Itechnology;
   handleSavedTechnology: (technology: Itechnology) => void;
+  saved: Itechnology[];
 };
 
 const badgeColors: Record<string, string> = {
@@ -20,10 +21,11 @@ const badgeColors: Record<string, string> = {
 const TechnologyCard = ({
   technology,
   handleSavedTechnology,
+  saved,
 }: TechnologyCardProps) => {
   const { name, category, description, icon, rating, difficulty, badge } =
     technology;
-  const selected = false;
+  const selected = saved.some((item) => item.id === technology.id);
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-base-300 bg-base-100 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl">
       <div className="flex items-start justify-between">
@@ -70,10 +72,17 @@ const TechnologyCard = ({
       <button
         disabled={selected}
         onClick={() => handleSavedTechnology(technology)}
-        className="font-['Plus_Jakarta_Sans'] text-[12px] font-semibold mt-5 flex w-full items-center justify-center gap-1 rounded-lg bg-[#0A0F1D] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#151C2E]"
+        className="mt-5 flex w-full items-center justify-center gap-1 rounded-lg bg-[#0A0F1D] px-4 py-2.5 font-['Plus_Jakarta_Sans'] text-[12px] font-semibold text-white transition hover:bg-[#151C2E] disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500"
       >
-        AddtoStack
-        <FiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+					{selected ? (
+						<>
+							<FiCheck /> Added to Stack
+						</>
+					) : (
+						<>
+	          Add to Stack
+						</>
+					)}
       </button>
     </article>
   );

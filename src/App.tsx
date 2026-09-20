@@ -24,7 +24,21 @@ function App() {
   };
 
   const handleRemoveTechnology = (id:string) => {
-    console.log({id});
+    const findTechnology = saved.find((item) => item.id === id)
+    const updatedList = saved.filter((item) => item.id === id);
+    setSaved(updatedList);
+        if (findTechnology)
+      toast.success(`${findTechnology.name} removed from your list`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
   }
     const handleClearAll = () => {
     if (!saved.length) return;
@@ -53,6 +67,7 @@ function App() {
               <Technologies
                 technologiesPromise={technologiesPromise}
                 handleSavedTechnology={handleSavedTechnology}
+                saved={saved}
               />
             </Suspense>
             <Stack 

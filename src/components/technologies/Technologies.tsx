@@ -5,11 +5,13 @@ import TechnologyCard from "./TechnologyCard";
 interface TechnologiesProps {
   technologiesPromise: Promise<Itechnology[]>;
   handleSavedTechnology: (technology: Itechnology) => void;
+  saved: Itechnology[]
 }
 
 const Technologies = ({
   technologiesPromise,
   handleSavedTechnology,
+  saved
 }: TechnologiesProps) => {
   const alltechnologies = use(technologiesPromise);
   return (
@@ -20,6 +22,7 @@ const Technologies = ({
           key={singleTechnology.id}
           technology={singleTechnology}
           handleSavedTechnology={handleSavedTechnology}
+          saved={saved}
         />
       ))}
     </div>
