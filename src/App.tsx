@@ -25,8 +25,7 @@ function App() {
 
   const handleRemoveTechnology = (id:string) => {
     const findTechnology = saved.find((item) => item.id === id)
-    const updatedList = saved.filter((item) => item.id === id);
-    setSaved(updatedList);
+    setSaved(saved.filter((item) => item.id !== id));
         if (findTechnology)
       toast.success(`${findTechnology.name} removed from your list`, {
         position: "top-right",
